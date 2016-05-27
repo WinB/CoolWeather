@@ -2,13 +2,11 @@ package com.demo.liuwenbin.coolweather.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.widget.SimpleAdapter;
 
 import com.demo.liuwenbin.coolweather.model.City;
-import com.demo.liuwenbin.coolweather.model.CoolWeatherDB;
+import com.demo.liuwenbin.coolweather.db.CoolWeatherDB;
 import com.demo.liuwenbin.coolweather.model.County;
 import com.demo.liuwenbin.coolweather.model.Province;
 

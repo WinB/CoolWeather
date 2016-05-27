@@ -1,11 +1,13 @@
-package com.demo.liuwenbin.coolweather.model;
+package com.demo.liuwenbin.coolweather.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.demo.liuwenbin.coolweather.db.CoolWeatherOpenHelper;
+import com.demo.liuwenbin.coolweather.model.City;
+import com.demo.liuwenbin.coolweather.model.County;
+import com.demo.liuwenbin.coolweather.model.Province;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +101,7 @@ public class CoolWeatherDB {
             ContentValues values = new ContentValues();
             values.put("county_name",county.getCountyName());
             values.put("county_code",county.getCountyCode());
-            values.put("county_id",county.getCityId());
+            values.put("city_id",county.getCityId());
             db.insert("County",null,values);
         }
     }

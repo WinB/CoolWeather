@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.demo.liuwenbin.coolweather.R;
 import com.demo.liuwenbin.coolweather.model.City;
-import com.demo.liuwenbin.coolweather.model.CoolWeatherDB;
+import com.demo.liuwenbin.coolweather.db.CoolWeatherDB;
 import com.demo.liuwenbin.coolweather.model.County;
 import com.demo.liuwenbin.coolweather.model.Province;
 import com.demo.liuwenbin.coolweather.util.HttpUtil;
