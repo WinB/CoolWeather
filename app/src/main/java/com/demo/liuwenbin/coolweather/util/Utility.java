@@ -75,4 +75,7 @@ public class Utility {
         return false;
     }
 
+    //解析服务器返回的JSON数据，并将解析存储到本地
+
+
 }
