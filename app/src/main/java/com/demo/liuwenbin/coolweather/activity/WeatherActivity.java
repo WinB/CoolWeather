@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import com.demo.liuwenbin.coolweather.R;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,7 +13,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.demo.liuwenbin.coolweather.R;
 import com.demo.liuwenbin.coolweather.service.AutoUpdateService;
 import com.demo.liuwenbin.coolweather.util.HttpCallbackListener;
 import com.demo.liuwenbin.coolweather.util.HttpUtil;
@@ -44,7 +44,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
     //更新天气按钮
     private Button refreshWeather;
 
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.weather_layout);
@@ -84,8 +84,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
                 break;
             case R.id.refresh_weather:
                 publishText.setText("同步中...");
-                SharedPreferences prefs = PreferenceManager.
-                        getDefaultSharedPreferences(this);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 String weatherCode = prefs.getString("weather_code","");
                 if(!TextUtils.isEmpty(weatherCode)){
                     queryWeatherInfo(weatherCode);
@@ -111,7 +110,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
     private void queryFromServer(final String address , final String type){
         HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
-            public void onFinish(final String response) {
+            public void onFinish(final String response) throws JSONException {
                 if("countyCode".equals(type)){
                     if(!TextUtils.isEmpty(response)){
                         //从服务器返回的数据中解析出天气代号
@@ -123,11 +122,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
                     }
                 }else if("weatherCode".equals(type)){
                     //处理服务器返回的天气信息
-                    try {
-                        Utility.handleWeatherResponse(WeatherActivity.this, response);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    Utility.handleWeatherResponse(WeatherActivity.this, response);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
