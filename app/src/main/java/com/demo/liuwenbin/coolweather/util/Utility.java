@@ -43,13 +43,12 @@ public class Utility {
         return false;
     }
     //解析和处理服务器返回的市级数据
-    public synchronized static boolean handleCitiesResponse(CoolWeatherDB coolWeatherDB,
+    public static boolean handleCitiesResponse(CoolWeatherDB coolWeatherDB,
                  String response,int provinceId){
         if(!TextUtils.isEmpty(response)){
             String[] allCities = response.split(",");
             if(allCities != null && allCities.length>0){
-                for(String c : allCities)
-                {
+                for(String c : allCities) {
                     String[] array = c.split("\\|");
                     City city = new City();
                     city.setCityCode(array[0]);
@@ -64,7 +63,7 @@ public class Utility {
         return false;
     }
     //解析和处理服务器返回的县级数据
-    public synchronized static boolean handleCountiesResponse(CoolWeatherDB coolWeatherDB,
+    public static boolean handleCountiesResponse(CoolWeatherDB coolWeatherDB,
                                                             String response,int cityId){
         if(!TextUtils.isEmpty(response)){
             String[] allCounties = response.split(",");

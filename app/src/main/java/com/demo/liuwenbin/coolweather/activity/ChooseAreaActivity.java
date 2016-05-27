@@ -20,6 +20,7 @@ import com.demo.liuwenbin.coolweather.model.City;
 import com.demo.liuwenbin.coolweather.db.CoolWeatherDB;
 import com.demo.liuwenbin.coolweather.model.County;
 import com.demo.liuwenbin.coolweather.model.Province;
+import com.demo.liuwenbin.coolweather.util.HttpCallbackListener;
 import com.demo.liuwenbin.coolweather.util.HttpUtil;
 import com.demo.liuwenbin.coolweather.util.Utility;
 
@@ -164,7 +165,7 @@ public class ChooseAreaActivity extends Activity {
             address = "http://www.weather.com.cn/data/list3/city.xml";
         }
         showProgressDialog();
-        HttpUtil.sendHttpRequest(address, new HttpUtil.HttpCallbackListener() {
+        HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
                 boolean result = false;

@@ -8,8 +8,10 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.demo.liuwenbin.coolweather.receiver.AutoUpdateReceiver;
+import com.demo.liuwenbin.coolweather.util.HttpCallbackListener;
 import com.demo.liuwenbin.coolweather.util.HttpUtil;
 import com.demo.liuwenbin.coolweather.util.Utility;
 
@@ -44,10 +46,11 @@ public class AutoUpdateService extends Service {
         SharedPreferences prefs = PreferenceManager. getDefaultSharedPreferences(this);
         String weatherCode = prefs.getString("weather_code", "");
         String address = "http://www.weather.com.cn/data/cityinfo/" + weatherCode + ".html";
-        HttpUtil.sendHttpRequest(address, new HttpUtil.HttpCallbackListener() {
+        HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
                 try {
+                    Log.d("TAG", response);
                     Utility.handleWeatherResponse(AutoUpdateService.this, response);
                 } catch (JSONException e) {
                     e.printStackTrace();

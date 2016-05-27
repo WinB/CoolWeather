@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.demo.liuwenbin.coolweather.R;
 import com.demo.liuwenbin.coolweather.service.AutoUpdateService;
+import com.demo.liuwenbin.coolweather.util.HttpCallbackListener;
 import com.demo.liuwenbin.coolweather.util.HttpUtil;
 import com.demo.liuwenbin.coolweather.util.Utility;
 import org.json.JSONException;
@@ -57,8 +58,6 @@ public class WeatherActivity extends Activity implements OnClickListener{
         currentDateText = (TextView) findViewById(R.id.current_date);
         switchCity = (Button) findViewById(R.id.switch_city);
         refreshWeather = (Button) findViewById(R.id.refresh_weather);
-        switchCity.setOnClickListener(this);
-        refreshWeather.setOnClickListener(this);
         String countyCode = getIntent().getStringExtra("county_code");
         if(!TextUtils.isEmpty(countyCode)){
             //有县级代号时就去查询天气
@@ -110,7 +109,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
     }
     //根据传入的地址和类型去向服务器查询天气代号或者天气信息
     private void queryFromServer(final String address , final String type){
-        HttpUtil.sendHttpRequest(address, new HttpUtil.HttpCallbackListener() {
+        HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(final String response) {
                 if("countyCode".equals(type)){
